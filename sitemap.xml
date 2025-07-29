@@ -148,13 +148,6 @@
 
   
   <url>
-    <loc>https://qaqan.cn/categories/%E5%AD%A6%E7%82%B9%E4%BB%80%E4%B9%88/</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://qaqan.cn/categories/%E8%AF%B4%E7%82%B9%E4%BB%80%E4%B9%88/</loc>
     <lastmod>2025-07-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -163,6 +156,13 @@
   
   <url>
     <loc>https://qaqan.cn/categories/%E5%81%9A%E4%BD%9C%E4%B8%9A/</loc>
+    <lastmod>2025-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qaqan.cn/categories/%E5%AD%A6%E7%82%B9%E4%BB%80%E4%B9%88/</loc>
     <lastmod>2025-07-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
