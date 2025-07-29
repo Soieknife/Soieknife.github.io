@@ -1,35 +1,89 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Soieknife,蝲蝲蛄"><title>MovieReview · Nullptr</title><meta name="description" content="Movie Review: Forrest Gump
+  
 
-include mixins
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
-
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    if prev || next
-      .pagination
-        ul.clearfix
-          if prev
-            li.pre.pagbuttons
-              a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-          if next
-            li.next.pagbuttons
-              a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+Introduction
+“Life is like a box of chocolates. You never know what you’re gonna get.”
+“Forrest Gump” is a classic 1994"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.jpg"><h3 title=""><a href="/">Nullptr</a></h3><div class="description"><p>近人可读</p></div></div></div><div class="footer"><span> 2025</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Archivo</a></li><li><a href="/links">Enlaces</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/Sunflower.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>MovieReview</a></h3></div><div class="post-content"><p><strong>Movie Review: Forrest Gump</strong></p>
+<p><img src="/images/Poster.webp" alt="Forrest Gump Poster">  <!-- 插入电影海报 --></p>
+<hr>
+<h2 id="Introduction"><strong>Introduction</strong></h2>
+<p><em>“Life is like a box of chocolates. You never know what you’re gonna get.”</em></p>
+<p>“Forrest Gump” is a classic 1994 film directed by <strong>Robert Zemeckis</strong> and starring <strong>Tom Hanks</strong>. The movie follows Forrest Gump, a kind-hearted man with a low IQ who unintentionally influences key historical events in the United States.</p>
+<p>Besides being an emotionally touching story, this film is also <strong>a great resource for English learners</strong>! It contains many <strong>useful idioms, slang, and sentence structures</strong>, making it an ideal choice for improving listening and comprehension skills.</p>
+<hr>
+<h2 id="Plot-Summary"><strong>Plot Summary</strong></h2>
+<p><strong>Forrest’s Childhood</strong> – Overcomes physical disabilities with leg braces.<br>
+<strong>Football Star</strong> – Earns a college scholarship by running fast.<br>
+<strong>Vietnam War</strong> – Becomes a war hero and meets his best friend, Bubba.<br>
+<strong>Shrimp Business</strong> – Fulfills Bubba’s dream and becomes rich.<br>
+<strong>Jenny’s Story</strong> – A heartbreaking love story intertwined with his journey.</p>
+<p>Forrest experiences some of the most important events in American history, all while staying true to his <strong>kind and simple nature</strong>.</p>
+<p><img src="/images/run.webp" alt="Forrest Running Scene">  <!-- 插入 Forrest 经典奔跑画面 --></p>
+<hr>
+<h2 id="Key-English-Learning-Points"><strong>Key English Learning Points</strong></h2>
+<h3 id="1-Idioms-Slang-in-the-Movie"><strong>1. Idioms &amp; Slang in the Movie</strong></h3>
+<p>“Forrest Gump” is filled with common <strong>American idioms and expressions</strong>. Here are some highlights:</p>
+<p>🔹 <strong>“Life is like a box of chocolates. You never know what you’re gonna get.”</strong><br>
+Meaning: Life is full of surprises.<br>
+<em>“gonna”</em> is a casual way to say <em>“going to”</em>, common in spoken English.</p>
+<p>🔹 <strong>“Stupid is as stupid does.”</strong><br>
+Meaning: Intelligence is shown through actions, not words.<br>
+Structure Tip: Repeating words in an unusual way can emphasize meaning.</p>
+<p>🔹 <strong>“Run, Forrest, run!”</strong><br>
+This phrase became a pop culture reference, often used humorously to encourage someone to move faster.</p>
+<hr>
+<h3 id="2-Useful-Sentence-Structures"><strong>2. Useful Sentence Structures</strong></h3>
+<p>The movie is a great source of <strong>real-life English sentence patterns</strong>:</p>
+<p><strong>First-Person Narrative</strong></p>
+<blockquote>
+<p><em>“My mama always said, ‘Life was like a box of chocolates.’”</em><br>
+<strong>Why it’s useful?</strong><br>
+This is an example of a <strong>past habit (“always said”)</strong> and reported speech.</p>
+</blockquote>
+<p><strong>Past Tense Usage</strong></p>
+<blockquote>
+<p><em>“I was running.”</em> / <em>“I had been running for three years.”</em><br>
+<strong>Why it’s useful?</strong><br>
+It demonstrates the difference between <strong>past continuous (“was running”)</strong> and <strong>past perfect continuous (“had been running”)</strong>.</p>
+</blockquote>
+<p><strong>Conditional Sentences</strong></p>
+<blockquote>
+<p><em>“If I’d known that was the last time I was going to talk to Bubba, I would’ve said something better.”</em><br>
+<strong>Why it’s useful?</strong><br>
+A great example of a <strong>third conditional sentence (if + past perfect, would have + past participle)</strong>.</p>
+</blockquote>
+<hr>
+<h2 id="American-Culture-History-in-the-Film"><strong>American Culture &amp; History in the Film</strong></h2>
+<p>One of the fascinating aspects of “Forrest Gump” is its <strong>connection to real historical events</strong>. Watching the movie can improve your understanding of <strong>American culture</strong> while improving your English skills.</p>
+<h3 id="Historical-References-in-the-Movie"><strong>Historical References in the Movie</strong></h3>
+<p><strong>Vietnam War</strong> – Forrest becomes a soldier and saves his friend Bubba.<br>
+<strong>Civil Rights Movement</strong> – Forrest unknowingly influences major events.<br>
+<strong>Watergate Scandal</strong> – He accidentally uncovers the scandal.<br>
+<strong>1980s Tech Boom</strong> – Forrest invests in “some fruit company” (Apple 🍏).</p>
+<p><img src="/images/president.jpg" alt="Forrest meets the President">  <!-- 插入 Forrest Gump 见总统的片段 --></p>
+<hr>
+<h2 id="Tips-for-Learning-English-with-Forrest-Gump"><strong>Tips for Learning English with Forrest Gump</strong></h2>
+<p><strong>Step 1</strong> – Watch with <strong>English subtitles</strong> to catch new words.<br>
+<strong>Step 2</strong> – Take notes on interesting phrases.<br>
+<strong>Step 3</strong> – Repeat key dialogues to improve pronunciation.<br>
+<strong>Step 4</strong> – Rewatch key scenes <strong>without subtitles</strong> to test comprehension.</p>
+<hr>
+<h2 id="Final-Thoughts"><strong>Final Thoughts</strong></h2>
+<p>“Forrest Gump” is more than just a movie—it’s <strong>a life lesson</strong> and <strong>a fantastic English learning tool</strong>. The <strong>slow and clear dialogue</strong>, combined with <strong>iconic quotes</strong>, makes it perfect for English learners.</p>
+<p><strong>Do I recommend it?</strong> <strong>Absolutely!</strong> Whether you’re learning English or just looking for an inspiring story, this film is a must-watch!</p>
+<p><img src="/images/sit.webp" alt="Forrest Gump Bench Scene">  <!-- 插入阿甘坐在长椅上的经典画面 --></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-03-30</span><i class="fa fa-tag"></i><a class="tag" href="/categories/做作业/" title="做作业">做作业 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2025/04/07/4-6%E6%88%91%E7%96%AF%E4%BA%86/" title="4.6 刺猬 我疯了">Post anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/03/26/java%E5%AD%A6%E4%B9%A0/" title="java学习">Post siguiente</a></li></ul></div><a id="comments"></a><div id="waline" style="margin:0 30px;"></div><script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script><script>Waline.init({
+    el: '#waline',
+    serverURL: 'waline.qaqan.cn',
+    path: window.location.pathname,
+    placeholder: '评论' || 'ヾ(≧∇≦*)ゝ说点什么吧~',
+    avatar: 'hide' || 'mp',
+    meta: nick || ['nick', 'mail', 'link'],
+    requiredMeta: nick || ['nick'],
+    lang: 'zh-CN' || 'zh-CN',
+    emoji: https://unpkg.com/@waline/emojis@1.1.0/weibo || ['https://unpkg.com/@waline/emojis@1.1.0/weibo'],
+    dark: 'auto' || 'auto',
+    pageSize: 10 || 10,
+    copyright: false || true,
+    reaction: false || false
+});</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

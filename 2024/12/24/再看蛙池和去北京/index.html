@@ -1,35 +1,29 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Soieknife,蝲蝲蛄"><title>再看蛙池和去北京 · Nullptr</title><meta name="description" content="好久没再写博客，从每天都一样的日子里挑出来有印象的几天确实很不容易。更多的时候虽然也有趣事发生，但经历之后发现无太大写的必要。今晚完成了数据结构的答辩，有心情坐下来写一写。
 
-include mixins
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
-
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    if prev || next
-      .pagination
-        ul.clearfix
-          if prev
-            li.pre.pagbuttons
-              a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-          if next
-            li.next.pagbuttons
-              a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+买到了蛙池的冬季巡演
+我喜欢蛙池，虽然一开始喜欢的理由是那么潦草：不过是因为主唱金依依像中学时代喜欢过的一个同学。我喜欢她们"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.jpg"><h3 title=""><a href="/">Nullptr</a></h3><div class="description"><p>近人可读</p></div></div></div><div class="footer"><span> 2025</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Archivo</a></li><li><a href="/links">Enlaces</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/Sunflower.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>再看蛙池和去北京</a></h3></div><div class="post-content"><p>好久没再写博客，从每天都一样的日子里挑出来有印象的几天确实很不容易。更多的时候虽然也有趣事发生，但经历之后发现无太大写的必要。今晚完成了数据结构的答辩，有心情坐下来写一写。</p>
+<p><img src="/images/wachi_1.jpg" alt="wachi_1"></p>
+<p><em>买到了蛙池的冬季巡演</em></p>
+<p>我喜欢蛙池，虽然一开始喜欢的理由是那么潦草：不过是因为主唱金依依像中学时代喜欢过的一个同学。我喜欢她们身上刺眼的生命力。好在时间过去，我仍然继续喜欢这支乐队。他们至少有一支歌是写给我的。</p>
+<p><img src="/images/wachi_2.jpg" alt="wachi_2"></p>
+<p><em>特别羞涩地签名和合照</em></p>
+<p>然后就和朋友去了北京。</p>
+<p>我也喜欢北京的色彩。在故宫远眺的时候也希望自己是皇帝。吃喝乏味可陈，对我来说。</p>
+<p><img src="/images/BAITA.jpg" alt="baita"></p>
+<p><em>拍到了白塔，哪吒乐队的一张专辑封面。</em></p>
+<p>发觉听过的很多乐队名、歌词都其来有自，就像后海大鲨鱼，哪吒，赵雷，新裤子。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-12-24</span><i class="fa fa-tag"></i><a class="tag" href="/categories/说点什么/" title="说点什么">说点什么 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2024/12/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E4%BD%9C%E4%B8%9A%E7%95%99%E5%BF%B5/" title="一元稀疏多项式的计算">Post anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2024/10/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%B2%E4%B9%89/" title="数据结构讲义">Post siguiente</a></li></ul></div><a id="comments"></a><div id="waline" style="margin:0 30px;"></div><script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script><script>Waline.init({
+    el: '#waline',
+    serverURL: 'waline.qaqan.cn',
+    path: window.location.pathname,
+    placeholder: '评论' || 'ヾ(≧∇≦*)ゝ说点什么吧~',
+    avatar: 'hide' || 'mp',
+    meta: nick || ['nick', 'mail', 'link'],
+    requiredMeta: nick || ['nick'],
+    lang: 'zh-CN' || 'zh-CN',
+    emoji: https://unpkg.com/@waline/emojis@1.1.0/weibo || ['https://unpkg.com/@waline/emojis@1.1.0/weibo'],
+    dark: 'auto' || 'auto',
+    pageSize: 10 || 10,
+    copyright: false || true,
+    reaction: false || false
+});</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

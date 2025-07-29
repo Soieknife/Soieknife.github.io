@@ -1,35 +1,25 @@
-extends partial/layout
-
-include mixins
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
-
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    if prev || next
-      .pagination
-        ul.clearfix
-          if prev
-            li.pre.pagbuttons
-              a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-          if next
-            li.next.pagbuttons
-              a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Soieknife,蝲蝲蛄"><title>我祈祷拥有一颗透明的心灵 · Nullptr</title><meta name="description" content="告别春天，进入天高云阔的夏天以后，睡眠突然减少了。感谢这部分多出来的时间，我又开始想。
+四月，经历了我姐的婚礼，小狗第一次来姨妈，两场演出。期待了很多事情。我姐比我多出的九年生命长度，在婚礼那刻被细细剪开。一家人对着剪断的丝丝缕缕难过，哭过几场之后生活也没什么不一样。婚姻对女方家是一场精心设计的巧取"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.jpg"><h3 title=""><a href="/">Nullptr</a></h3><div class="description"><p>近人可读</p></div></div></div><div class="footer"><span> 2025</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Archivo</a></li><li><a href="/links">Enlaces</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/Sunflower.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>我祈祷拥有一颗透明的心灵</a></h3></div><div class="post-content"><p>告别春天，进入天高云阔的夏天以后，睡眠突然减少了。感谢这部分多出来的时间，我又开始想。</p>
+<p>四月，经历了我姐的婚礼，小狗第一次来姨妈，两场演出。期待了很多事情。我姐比我多出的九年生命长度，在婚礼那刻被细细剪开。一家人对着剪断的丝丝缕缕难过，哭过几场之后生活也没什么不一样。婚姻对女方家是一场精心设计的巧取豪夺。我姐展现出来的成熟姿态让我惭愧。我对我姐的崇拜，又变得崇高了。</p>
+<p>小狗长大很多，毛摸着还是糙糙的。她不喜欢穿衣服，也不爱穿纸尿裤，考虑绝育，不过绝育要切子宫，不舍得小狗难受，还不知道怎么办好。想到这里特别惊叹文字的能力：写出小狗这两个字的时候，想象里也出现一张圆狗脸。昨晚收到一张豆豆wink的照片，不知道怎么学来的。</p>
+<p>五月，特别期待的演出在原定日期的前一天取消了。</p>
+<p>今年经受了很多对审美的考验：好像不再能接受蛙池这类写作不能传达思想之流，也再没有耐心听思江念诗，听晕车车的时候会觉得吵耳朵。对着网易云茫然，随机到的歌听起来不再悦耳了。这是因为我得到了审美的长进，还是过往喜欢的支撑——那种精神上的刻奇不再稳固了？</p>
+<p>刻奇，这个新鲜的词，我从播客里学到它。整个春天记在微信收藏里的漂亮字眼还有不少，什么牝鸡司晨、荷丝难杀。</p>
+<p>春天里还在读潮湿的台湾文学，看陈绮贞、安溥的演出，看文艺片的拉片，支持所有性取向。夏天以后突然觉得无趣：喜欢如果没有门槛，那也同样没有纵深，进入和离开都不值得自矜。既然喜欢上这些东西的时候没有什么阻碍，那放弃的时候也不应该痛苦。我和它们之间的联系本就细若游丝。</p>
+<p>春夏之交的那个夜晚，多少人悄悄背叛了春天曾共鸣的所有感情？幸运的是，我仍然喜欢摇滚乐。</p>
+<p><strong>你原谅我吧，年轻时会辜负一些人，就像春天会有必死无疑的花香。</strong></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-06-01</span><i class="fa fa-tag"></i><a class="tag" href="/categories/写点什么/" title="写点什么">写点什么 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2025/06/02/%E6%97%A0%E6%84%8F%E4%B9%89%E5%B0%8F%E7%8B%97%E5%9B%BE/" title="无意义豆豆图">Post anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/05/12/%E9%92%A2%E5%BF%83/" title="5-11 钢心">Post siguiente</a></li></ul></div><a id="comments"></a><div id="waline" style="margin:0 30px;"></div><script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script><script>Waline.init({
+    el: '#waline',
+    serverURL: 'waline.qaqan.cn',
+    path: window.location.pathname,
+    placeholder: '评论' || 'ヾ(≧∇≦*)ゝ说点什么吧~',
+    avatar: 'hide' || 'mp',
+    meta: nick || ['nick', 'mail', 'link'],
+    requiredMeta: nick || ['nick'],
+    lang: 'zh-CN' || 'zh-CN',
+    emoji: https://unpkg.com/@waline/emojis@1.1.0/weibo || ['https://unpkg.com/@waline/emojis@1.1.0/weibo'],
+    dark: 'auto' || 'auto',
+    pageSize: 10 || 10,
+    copyright: false || true,
+    reaction: false || false
+});</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

@@ -1,35 +1,36 @@
-extends partial/layout
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Soieknife,蝲蝲蛄"><title>4.6 刺猬 我疯了 · Nullptr</title><meta name="description" content="认识刺猬也是在那个暑假，5年过去终于看到现场，留下纪念。特别喜欢那种以头抢地的生命力。
 
-include mixins
+歌词
 
-block site_title
-    != page.title + " · " + config.title
+赵子建。
 
-block description
-    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
-    meta(name="description", content=desc)
+西西 键盘
 
-block content
-  .autopagerize_page_element: .content: .post-page
-    include mixins
-    +make_post(page, true)
-    .share
-      .evernote
-        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
-      .weibo
-        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
-      .twitter
-        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false;
-    if prev || next
-      .pagination
-        ul.clearfix
-          if prev
-            li.pre.pagbuttons
-              a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
-          if next
-            li.next.pagbuttons
-              a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
-    if page.comments
-        include partial/comments
+一帆
+
+现场"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.jpg"><h3 title=""><a href="/">Nullptr</a></h3><div class="description"><p>近人可读</p></div></div></div><div class="footer"><span> 2025</span></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">Home</a></li><li><a href="/about">Sobre</a></li><li><a href="/archives">Archivo</a></li><li><a href="/links">Enlaces</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/Sunflower.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>4.6 刺猬 我疯了</a></h3></div><div class="post-content"><p>认识刺猬也是在那个暑假，5年过去终于看到现场，留下纪念。特别喜欢那种以头抢地的生命力。</p>
+<p><img src="/images/cw_post.jpg" alt="logo"></p>
+<center/><i>歌词<i><center/>
+<p><img src="/images/cw_1.jpg" alt="1"></p>
+<center/><i>赵子建。<i><center/>
+<p><img src="/images/cw_2.jpg" alt="2"></p>
+<center/><i>西西 键盘<i><center/>
+<p><img src="/images/cw_3.jpg" alt="3"></p>
+<center/><i>一帆<i><center/>
+<p><video src="/images/cw_live.mp4" position= "absolute" width="100%" height="100%" controls="controls"></video></p>
+<center/><i>现场<i><center/>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-04-07</span><i class="fa fa-tag"></i><a class="tag" href="/categories/学点什么/" title="学点什么">学点什么 </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2025/05/12/%E9%92%A2%E5%BF%83/" title="5-11 钢心">Post anterior</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/03/30/MovieReview/" title="MovieReview">Post siguiente</a></li></ul></div><a id="comments"></a><div id="waline" style="margin:0 30px;"></div><script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script><script>Waline.init({
+    el: '#waline',
+    serverURL: 'waline.qaqan.cn',
+    path: window.location.pathname,
+    placeholder: '评论' || 'ヾ(≧∇≦*)ゝ说点什么吧~',
+    avatar: 'hide' || 'mp',
+    meta: nick || ['nick', 'mail', 'link'],
+    requiredMeta: nick || ['nick'],
+    lang: 'zh-CN' || 'zh-CN',
+    emoji: https://unpkg.com/@waline/emojis@1.1.0/weibo || ['https://unpkg.com/@waline/emojis@1.1.0/weibo'],
+    dark: 'auto' || 'auto',
+    pageSize: 10 || 10,
+    copyright: false || true,
+    reaction: false || false
+});</script></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
