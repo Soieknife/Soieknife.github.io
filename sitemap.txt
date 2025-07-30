@@ -16,6 +16,6 @@ https://qaqan.cn/archives/index.html
 https://qaqan.cn/
 https://qaqan.cn/tags/%E6%91%87%E6%BB%9A%E4%B9%90/
 https://qaqan.cn/tags/%E7%8B%97/
-https://qaqan.cn/categories/post/
-https://qaqan.cn/categories/code/
 https://qaqan.cn/categories/live/
+https://qaqan.cn/categories/code/
+https://qaqan.cn/categories/post/
