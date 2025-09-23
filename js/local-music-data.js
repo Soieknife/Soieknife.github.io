@@ -15,14 +15,12 @@ class LocalMusicData {
      */
     async init() {
         try {
-            console.log('正在初始化本地音乐数据...');
             const response = await fetch('/data/songs.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             this.data = await response.json();
             this.initialized = true;
-            console.log(`本地音乐数据初始化成功，共加载 ${this.data.songs.length} 首歌曲`);
             return true;
         } catch (error) {
             console.error('本地音乐数据初始化失败:', error);
@@ -38,13 +36,11 @@ class LocalMusicData {
      */
     getSongById(id) {
         if (!this.initialized || !this.data) {
-            console.warn('本地数据未初始化');
             return null;
         }
 
         const song = this.data.songs.find(s => s.id === id);
         if (!song) {
-            console.warn(`未找到ID为 ${id} 的歌曲`);
             return null;
         }
 
@@ -88,11 +84,9 @@ class LocalMusicData {
         try {
             const response = await fetch(`/data/lyrics/${id}.lrc`);
             if (!response.ok) {
-                console.warn(`未找到歌曲 ${id} 的歌词文件`);
                 return null;
             }
             const lyrics = await response.text();
-            console.log(`成功加载歌曲 ${id} 的歌词`);
             return lyrics;
         } catch (error) {
             console.error(`加载歌词失败 (${id}):`, error);

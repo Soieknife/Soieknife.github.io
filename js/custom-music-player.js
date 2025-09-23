@@ -43,7 +43,7 @@ class CustomMusicPlayer {
     this.showLoading();
     
     try {
-      console.log('正在初始化本地音乐播放器...');
+
       
       // 初始化本地数据管理器
       if (window.LocalMusicData) {
@@ -70,7 +70,7 @@ class CustomMusicPlayer {
         throw new Error('播放列表为空');
       }
       
-      console.log('本地音乐播放器初始化完成');
+      
       
     } catch (error) {
       console.error('音乐播放器初始化失败:', error);
@@ -136,7 +136,7 @@ class CustomMusicPlayer {
         this.currentIndex = this.playlist.findIndex(song => song.element === activeItem);
       }
       
-      console.log(`播放列表加载完成，共 ${this.playlist.length} 首歌曲`);
+
       
     } catch (error) {
       console.error('加载播放列表失败:', error);
@@ -148,20 +148,14 @@ class CustomMusicPlayer {
    * 获取歌曲详细信息
    */
   async fetchSongDetails() {
-    console.log(`当前播放索引: ${this.currentIndex}, 播放列表长度: ${this.playlist ? this.playlist.length : 0}`);
-    
     const currentSong = this.playlist[this.currentIndex];
     if (!currentSong) {
-      console.error('当前歌曲为空，播放列表:', this.playlist);
       return null;
     }
     
     if (!this.localData) {
-      console.error('本地数据管理器未初始化');
       return null;
     }
-
-    console.log(`正在获取歌曲信息，ID: ${currentSong.id}`);
 
     try {
       const songInfo = this.localData.getSongById(currentSong.id);
@@ -169,7 +163,7 @@ class CustomMusicPlayer {
         throw new Error(`未找到歌曲信息: ${currentSong.id}`);
       }
 
-      console.log(`获取歌曲信息成功: ${songInfo.title} - ${songInfo.artist}`);
+      
       return songInfo;
     } catch (error) {
       console.error('获取歌曲详细信息失败:', error);
@@ -231,8 +225,7 @@ class CustomMusicPlayer {
     this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
     this.audioPlayer.addEventListener('ended', () => this.playNext());
     this.audioPlayer.addEventListener('error', (e) => this.handleError(e));
-    this.audioPlayer.addEventListener('loadstart', () => console.log('开始加载音频'));
-    this.audioPlayer.addEventListener('canplay', () => console.log('音频可以播放'));
+
   }
 
   /**
@@ -252,7 +245,7 @@ class CustomMusicPlayer {
       // 设置音频源
       if (this.audioPlayer && songDetails.url) {
         this.audioPlayer.src = songDetails.url;
-        console.log(`设置音频源: ${songDetails.url}`);
+
       }
 
       // 加载歌词
@@ -272,26 +265,17 @@ class CustomMusicPlayer {
    */
   async loadLyrics(songId) {
     try {
-      console.log(`正在加载歌词: ${songId}`);
-      
       // 重置歌词状态
-      this.currentLyrics = [];
-      this.currentLyricIndex = -1;
-      
+    this.currentLyrics = [];
+    this.currentLyricIndex = -1;
+    
+    try {
       const lyricsText = await this.localData.loadLyrics(songId);
       if (lyricsText) {
-        console.log(`歌词文本长度: ${lyricsText.length}`);
         this.currentLyrics = this.parseLyrics(lyricsText);
         this.displayLyrics();
-        console.log(`歌词加载成功，共 ${this.currentLyrics.length} 行`);
-        
-        // 输出前几行歌词用于调试
-        if (this.currentLyrics.length > 0) {
-          console.log('前3行歌词:', this.currentLyrics.slice(0, 3));
-        }
       } else {
         this.displayNoLyrics();
-        console.log('未找到歌词文件');
       }
     } catch (error) {
       console.error('加载歌词失败:', error);
@@ -304,17 +288,13 @@ class CustomMusicPlayer {
    */
   parseLyrics(lrcText) {
     if (!lrcText || typeof lrcText !== 'string') {
-      console.warn('歌词文本为空或格式错误');
       return [];
     }
     
     const lines = lrcText.split('\n');
     const lyrics = [];
-    let parsedCount = 0;
     
-    console.log(`开始解析歌词，总行数: ${lines.length}`);
-    
-    lines.forEach((line, index) => {
+    lines.forEach((line) => {
       line = line.trim();
       if (!line) return;
       
@@ -328,17 +308,9 @@ class CustomMusicPlayer {
         
         if (text) {
           lyrics.push({ time, text });
-          parsedCount++;
-        }
-      } else {
-        // 输出无法解析的行用于调试
-        if (index < 5) {
-          console.log(`第${index + 1}行无法解析: "${line}"`);
         }
       }
     });
-    
-    console.log(`歌词解析完成，成功解析 ${parsedCount} 行`);
     
     return lyrics.sort((a, b) => a.time - b.time);
   }
@@ -399,7 +371,6 @@ class CustomMusicPlayer {
       if (this.playBtn) {
         this.playBtn.innerHTML = '<i class="icon-pause"></i>';
       }
-      console.log('开始播放');
     } catch (error) {
       console.error('播放失败:', error);
       this.showError('播放失败');
@@ -417,7 +388,7 @@ class CustomMusicPlayer {
     if (this.playBtn) {
       this.playBtn.innerHTML = '<i class="icon-play"></i>';
     }
-    console.log('暂停播放');
+
   }
 
   /**
