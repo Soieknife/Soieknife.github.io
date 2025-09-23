@@ -43,8 +43,6 @@ class CustomMusicPlayer {
     this.showLoading();
     
     try {
-
-      
       // 初始化本地数据管理器
       if (window.LocalMusicData) {
         this.localData = new window.LocalMusicData();
@@ -69,8 +67,6 @@ class CustomMusicPlayer {
       } else {
         throw new Error('播放列表为空');
       }
-      
-      
       
     } catch (error) {
       console.error('音乐播放器初始化失败:', error);
@@ -264,8 +260,7 @@ class CustomMusicPlayer {
    * 加载歌词
    */
   async loadLyrics(songId) {
-    try {
-      // 重置歌词状态
+    // 重置歌词状态
     this.currentLyrics = [];
     this.currentLyricIndex = -1;
     
