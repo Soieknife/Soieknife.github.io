@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Soieknife</title>
   
-  
+  <subtitle>近人可读</subtitle>
   <link href="https://qaqan.cn/atom.xml" rel="self"/>
   
   <link href="https://qaqan.cn/"/>
@@ -61,15 +61,15 @@
     <published>2025-06-01T16:38:02.000Z</published>
     <updated>2025-07-30T08:40:54.378Z</updated>
     
-    <content type="html"><![CDATA[<p>已经是肥美豆豆了。<br><img src="/images/dd1.jpg" alt="豆豆"></p><p><img src="/images/dd.jpg" alt="豆豆"></p><p><img src="/images/dd2.jpg" alt="豆豆"></p><p><img src="/images/dd3.jpg" alt="豆豆"></p>]]></content>
+    <content type="html"><![CDATA[<p>已经是肥美豆豆了。<br><img src="/images/dd1.jpg" alt="豆豆" loading="lazy"></p><p><img src="/images/dd.jpg" alt="豆豆" loading="lazy"></p><p><img src="/images/dd2.jpg" alt="豆豆" loading="lazy"></p><p><img src="/images/dd3.jpg" alt="豆豆" loading="lazy"></p>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;已经是肥美豆豆了。&lt;br&gt;
-&lt;img src=&quot;/images/dd1.jpg&quot; alt=&quot;豆豆&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/dd.jpg&quot; alt=&quot;豆豆&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/dd2.jpg&quot; alt=&quot;豆豆&quot;&gt;</summary>
+&lt;img src=&quot;/images/dd1.jpg&quot; alt=&quot;豆豆&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/dd.jpg&quot; alt=&quot;豆豆&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img s</summary>
       
     
     
@@ -107,7 +107,7 @@
     <published>2025-05-12T12:19:15.000Z</published>
     <updated>2025-07-30T10:40:55.533Z</updated>
     
-    <content type="html"><![CDATA[<p>朋友圈看见郑州开了新的livehouse，买票去看了一小时的钢心。</p><p>之前就听钢心，只是没有想到主唱是摇滚老头。18岁的男孩水灵，54岁的老头三倍水灵。</p><p>现场很好，大家都很开心。</p><span id="more"></span><p><img src="/images/gx_1.jpg" alt="海报"></p><p><img src="/images/gx_2.jpg" alt="老头"></p>]]></content>
+    <content type="html"><![CDATA[<p>朋友圈看见郑州开了新的livehouse，买票去看了一小时的钢心。</p><p>之前就听钢心，只是没有想到主唱是摇滚老头。18岁的男孩水灵，54岁的老头三倍水灵。</p><p>现场很好，大家都很开心。</p><span id="more"></span><p><img src="/images/gx_1.jpg" alt="海报" loading="lazy"></p><p><img src="/images/gx_2.jpg" alt="老头" loading="lazy"></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;朋友圈看见郑州开了新的livehouse，买票去看了一小时的钢心。&lt;/p&gt;
@@ -130,7 +130,7 @@
     <published>2025-04-07T15:26:46.000Z</published>
     <updated>2025-07-30T10:40:58.937Z</updated>
     
-    <content type="html"><![CDATA[<p>认识刺猬也是在那个暑假，5年过去终于看到现场，留下纪念。特别喜欢那种以头抢地的生命力。</p><span id="more"></span><p><img src="/images/cw_post.jpg" alt="logo"></p><center/><i>歌词<i><center/><p><img src="/images/cw_1.jpg" alt="1"></p><center/><i>赵子建。<i><center/><p><img src="/images/cw_2.jpg" alt="2"></p><center/><i>西西 键盘<i><center/><p><img src="/images/cw_3.jpg" alt="3"></p><center/><i>一帆<i><center/><p><video src="/images/cw_live.mp4" position= "absolute" width="100%" height="100%" controls="controls"></video></p><center/><i>现场<i><center/>]]></content>
+    <content type="html"><![CDATA[<p>认识刺猬也是在那个暑假，5年过去终于看到现场，留下纪念。特别喜欢那种以头抢地的生命力。</p><span id="more"></span><p><img src="/images/cw_post.jpg" alt="logo" loading="lazy"></p><center/><i>歌词<i><center/><p><img src="/images/cw_1.jpg" alt="1" loading="lazy"></p><center/><i>赵子建。<i><center/><p><img src="/images/cw_2.jpg" alt="2" loading="lazy"></p><center/><i>西西 键盘<i><center/><p><img src="/images/cw_3.jpg" alt="3" loading="lazy"></p><center/><i>一帆<i><center/><p><video src="/images/cw_live.mp4" position= "absolute" width="100%" height="100%" controls="controls"></video></p><center/><i>现场<i><center/>]]></content>
     
     
     <summary type="html">&lt;p&gt;认识刺猬也是在那个暑假，5年过去终于看到现场，留下纪念。特别喜欢那种以头抢地的生命力。&lt;/p&gt;</summary>
@@ -203,7 +203,7 @@
     <published>2024-12-23T16:35:21.000Z</published>
     <updated>2025-07-30T10:41:10.805Z</updated>
     
-    <content type="html"><![CDATA[<p>好久没再写博客，从每天都一样的日子里挑出来有印象的几天确实很不容易。更多的时候虽然也有趣事发生，但经历之后发现无太大写的必要。今晚完成了数据结构的答辩，有心情坐下来写一写。<span id="more"></span></p><p><img src="/images/wachi_1.jpg" alt="wachi_1"></p><p><em>买到了蛙池的冬季巡演</em></p><p>我喜欢蛙池，虽然一开始喜欢的理由是那么潦草：不过是因为主唱金依依像中学时代喜欢过的一个同学。我喜欢她们身上刺眼的生命力。好在时间过去，我仍然继续喜欢这支乐队。他们至少有一支歌是写给我的。</p><p><img src="/images/wachi_2.jpg" alt="wachi_2"></p><p><em>特别羞涩地签名和合照</em></p><p>然后就和朋友去了北京。</p><p>我也喜欢北京的色彩。在故宫远眺的时候也希望自己是皇帝。吃喝乏味可陈，对我来说。</p><p><img src="/images/BAITA.jpg" alt="baita"></p><p><em>拍到了白塔，哪吒乐队的一张专辑封面。</em></p><p>发觉听过的很多乐队名、歌词都其来有自，就像后海大鲨鱼，哪吒，赵雷，新裤子。</p>]]></content>
+    <content type="html"><![CDATA[<p>好久没再写博客，从每天都一样的日子里挑出来有印象的几天确实很不容易。更多的时候虽然也有趣事发生，但经历之后发现无太大写的必要。今晚完成了数据结构的答辩，有心情坐下来写一写。<span id="more"></span></p><p><img src="/images/wachi_1.jpg" alt="wachi_1" loading="lazy"></p><p><em>买到了蛙池的冬季巡演</em></p><p>我喜欢蛙池，虽然一开始喜欢的理由是那么潦草：不过是因为主唱金依依像中学时代喜欢过的一个同学。我喜欢她们身上刺眼的生命力。好在时间过去，我仍然继续喜欢这支乐队。他们至少有一支歌是写给我的。</p><p><img src="/images/wachi_2.jpg" alt="wachi_2" loading="lazy"></p><p><em>特别羞涩地签名和合照</em></p><p>然后就和朋友去了北京。</p><p>我也喜欢北京的色彩。在故宫远眺的时候也希望自己是皇帝。吃喝乏味可陈，对我来说。</p><p><img src="/images/BAITA.jpg" alt="baita" loading="lazy"></p><p><em>拍到了白塔，哪吒乐队的一张专辑封面。</em></p><p>发觉听过的很多乐队名、歌词都其来有自，就像后海大鲨鱼，哪吒，赵雷，新裤子。</p>]]></content>
     
     
     <summary type="html">&lt;p&gt;好久没再写博客，从每天都一样的日子里挑出来有印象的几天确实很不容易。更多的时候虽然也有趣事发生，但经历之后发现无太大写的必要。今晚完成了数据结构的答辩，有心情坐下来写一写。</summary>

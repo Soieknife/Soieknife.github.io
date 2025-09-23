@@ -191,6 +191,8 @@ class CustomMusicPlayer {
    * 绑定事件监听器
    */
   bindEvents() {
+    console.log('=== bindEvents 函数被调用 ===');
+    
     // 播放控制按钮
     if (this.playBtn) this.playBtn.addEventListener('click', () => this.togglePlay());
     if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.playPrevious());
@@ -201,7 +203,25 @@ class CustomMusicPlayer {
     if (this.volumeRange) this.volumeRange.addEventListener('input', (e) => this.setVolume(e.target.value));
     
     // 进度条
-    if (this.progressBar) this.progressBar.addEventListener('click', (e) => this.seekTo(e));
+    console.log('进度条元素:', this.progressBar);
+    if (this.progressBar) {
+      console.log('为进度条添加点击事件监听器');
+      this.progressBar.addEventListener('click', (e) => {
+        console.log('进度条被点击，调用 seekTo');
+        this.seekTo(e);
+      });
+      
+      // 添加鼠标悬停效果用于调试
+      this.progressBar.addEventListener('mouseenter', () => {
+        console.log('鼠标进入进度条区域');
+      });
+      
+      this.progressBar.addEventListener('mouseleave', () => {
+        console.log('鼠标离开进度条区域');
+      });
+    } else {
+      console.error('进度条元素未找到！');
+    }
     
     // 播放列表点击
     this.playlist.forEach((song, index) => {
@@ -221,6 +241,11 @@ class CustomMusicPlayer {
     this.audioPlayer.addEventListener('timeupdate', () => this.updateProgress());
     this.audioPlayer.addEventListener('ended', () => this.playNext());
     this.audioPlayer.addEventListener('error', (e) => this.handleError(e));
+    
+    // 音频加载状态监听器
+    this.audioPlayer.addEventListener('loadstart', () => this.onAudioLoadStart());
+    this.audioPlayer.addEventListener('canplay', () => this.onAudioCanPlay());
+    this.audioPlayer.addEventListener('loadedmetadata', () => this.onAudioMetadataLoaded());
 
   }
 
@@ -293,15 +318,18 @@ class CustomMusicPlayer {
       line = line.trim();
       if (!line) return;
       
-      const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2})\](.*)/);
+      // 支持两位数和三位数毫秒格式：[mm:ss.xx] 或 [mm:ss.xxx]
+      const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\](.*)/);
       if (match) {
         const minutes = parseInt(match[1]);
         const seconds = parseInt(match[2]);
         const milliseconds = parseInt(match[3]);
-        const time = minutes * 60 + seconds + milliseconds / 100;
         const text = match[4].trim();
         
         if (text) {
+          // 根据毫秒位数调整计算方式
+          const msMultiplier = match[3].length === 2 ? 10 : 1;
+          const time = minutes * 60 + seconds + (milliseconds * msMultiplier) / 1000;
           lyrics.push({ time, text });
         }
       }
@@ -455,13 +483,50 @@ class CustomMusicPlayer {
    * 跳转到指定位置
    */
   seekTo(event) {
-    if (!this.audioPlayer || !this.progressBar) return;
+    console.log('=== seekTo 函数被调用 ===');
+    console.log('event:', event);
+    console.log('this.audioPlayer:', this.audioPlayer);
+    console.log('this.progressBar:', this.progressBar);
+    
+    if (!this.audioPlayer || !this.progressBar) {
+      console.error('音频播放器或进度条元素未找到');
+      return;
+    }
+    
+    console.log('audioPlayer.duration:', this.audioPlayer.duration);
+    console.log('audioPlayer.readyState:', this.audioPlayer.readyState);
+    console.log('audioPlayer.currentTime:', this.audioPlayer.currentTime);
+    
+    // 检查音频是否已加载且有有效的duration
+    if (!this.audioPlayer.duration || isNaN(this.audioPlayer.duration) || this.audioPlayer.duration <= 0) {
+      console.warn('音频尚未加载完成，无法跳转');
+      return;
+    }
+    
+    // 检查音频是否处于可跳转状态
+    if (this.audioPlayer.readyState < 2) {
+      console.warn('音频数据不足，无法跳转');
+      return;
+    }
     
     const rect = this.progressBar.getBoundingClientRect();
-    const percent = (event.clientX - rect.left) / rect.width;
+    console.log('progressBar rect:', rect);
+    console.log('event.clientX:', event.clientX);
+    
+    const percent = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
     const seekTime = percent * this.audioPlayer.duration;
     
-    this.audioPlayer.currentTime = seekTime;
+    console.log('计算的 percent:', percent);
+    console.log('计算的 seekTime:', seekTime);
+    
+    // 确保seekTime在有效范围内
+    if (seekTime >= 0 && seekTime <= this.audioPlayer.duration) {
+      console.log('设置 currentTime 为:', seekTime);
+      this.audioPlayer.currentTime = seekTime;
+      console.log('设置后的 currentTime:', this.audioPlayer.currentTime);
+    } else {
+      console.error('seekTime 超出有效范围:', seekTime);
+    }
   }
 
   /**
@@ -612,6 +677,42 @@ class CustomMusicPlayer {
   showError(message) {
     console.error('播放器错误:', message);
     // 可以在这里添加用户友好的错误提示UI
+  }
+
+  /**
+   * 音频开始加载
+   */
+  onAudioLoadStart() {
+    console.log('音频开始加载');
+    // 禁用进度条交互
+    if (this.progressBar) {
+      this.progressBar.style.pointerEvents = 'none';
+      this.progressBar.style.opacity = '0.5';
+    }
+  }
+
+  /**
+   * 音频元数据加载完成
+   */
+  onAudioMetadataLoaded() {
+    console.log('音频元数据加载完成');
+    // 启用进度条交互
+    if (this.progressBar) {
+      this.progressBar.style.pointerEvents = 'auto';
+      this.progressBar.style.opacity = '1';
+    }
+  }
+
+  /**
+   * 音频可以播放
+   */
+  onAudioCanPlay() {
+    console.log('音频可以播放');
+    // 确保进度条可以交互
+    if (this.progressBar) {
+      this.progressBar.style.pointerEvents = 'auto';
+      this.progressBar.style.opacity = '1';
+    }
   }
 
   /**
