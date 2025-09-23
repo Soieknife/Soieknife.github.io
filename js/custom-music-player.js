@@ -274,11 +274,21 @@ class CustomMusicPlayer {
     try {
       console.log(`正在加载歌词: ${songId}`);
       
+      // 重置歌词状态
+      this.currentLyrics = [];
+      this.currentLyricIndex = -1;
+      
       const lyricsText = await this.localData.loadLyrics(songId);
       if (lyricsText) {
+        console.log(`歌词文本长度: ${lyricsText.length}`);
         this.currentLyrics = this.parseLyrics(lyricsText);
         this.displayLyrics();
         console.log(`歌词加载成功，共 ${this.currentLyrics.length} 行`);
+        
+        // 输出前几行歌词用于调试
+        if (this.currentLyrics.length > 0) {
+          console.log('前3行歌词:', this.currentLyrics.slice(0, 3));
+        }
       } else {
         this.displayNoLyrics();
         console.log('未找到歌词文件');
@@ -293,10 +303,21 @@ class CustomMusicPlayer {
    * 解析LRC歌词格式
    */
   parseLyrics(lrcText) {
+    if (!lrcText || typeof lrcText !== 'string') {
+      console.warn('歌词文本为空或格式错误');
+      return [];
+    }
+    
     const lines = lrcText.split('\n');
     const lyrics = [];
+    let parsedCount = 0;
     
-    lines.forEach(line => {
+    console.log(`开始解析歌词，总行数: ${lines.length}`);
+    
+    lines.forEach((line, index) => {
+      line = line.trim();
+      if (!line) return;
+      
       const match = line.match(/\[(\d{2}):(\d{2})\.(\d{2})\](.*)/);
       if (match) {
         const minutes = parseInt(match[1]);
@@ -307,9 +328,17 @@ class CustomMusicPlayer {
         
         if (text) {
           lyrics.push({ time, text });
+          parsedCount++;
+        }
+      } else {
+        // 输出无法解析的行用于调试
+        if (index < 5) {
+          console.log(`第${index + 1}行无法解析: "${line}"`);
         }
       }
     });
+    
+    console.log(`歌词解析完成，成功解析 ${parsedCount} 行`);
     
     return lyrics.sort((a, b) => a.time - b.time);
   }
