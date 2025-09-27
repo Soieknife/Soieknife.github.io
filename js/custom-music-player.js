@@ -24,6 +24,8 @@ class CustomMusicPlayer {
     this.currentTitle = document.querySelector('.current-song-title');
     this.currentArtist = document.querySelector('.current-song-artist');
     this.lyricsContent = document.querySelector('.lyrics-content');
+    // 歌词容器（滚动条作用于该元素）
+    this.lyricsContainer = document.querySelector('.lyrics-container');
     
     // 播放列表
     this.playlist = [];
@@ -184,50 +186,36 @@ class CustomMusicPlayer {
     }
     
     // 更新页面标题
-    document.title = `${song.title} - ${song.artist} | 音乐播放器`;
+    document.title = `${song.title} - ${song.artist} | 在听`;
   }
 
   /**
    * 绑定事件监听器
    */
   bindEvents() {
-    console.log('=== bindEvents 函数被调用 ===');
-    
     // 播放控制按钮
     if (this.playBtn) this.playBtn.addEventListener('click', () => this.togglePlay());
     if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.playPrevious());
     if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.playNext());
-    
+
     // 音量控制
     if (this.volumeBtn) this.volumeBtn.addEventListener('click', () => this.toggleMute());
     if (this.volumeRange) this.volumeRange.addEventListener('input', (e) => this.setVolume(e.target.value));
-    
-    // 进度条
-    console.log('进度条元素:', this.progressBar);
+
+    // 进度条（仅保留必要的点击事件）
     if (this.progressBar) {
-      console.log('为进度条添加点击事件监听器');
       this.progressBar.addEventListener('click', (e) => {
-        console.log('进度条被点击，调用 seekTo');
         this.seekTo(e);
-      });
-      
-      // 添加鼠标悬停效果用于调试
-      this.progressBar.addEventListener('mouseenter', () => {
-        console.log('鼠标进入进度条区域');
-      });
-      
-      this.progressBar.addEventListener('mouseleave', () => {
-        console.log('鼠标离开进度条区域');
       });
     } else {
       console.error('进度条元素未找到！');
     }
-    
+
     // 播放列表点击
     this.playlist.forEach((song, index) => {
       song.element.addEventListener('click', () => this.playSong(index));
     });
-    
+
     // 键盘快捷键
     document.addEventListener('keydown', (e) => this.handleKeyboard(e));
   }
@@ -483,47 +471,28 @@ class CustomMusicPlayer {
    * 跳转到指定位置
    */
   seekTo(event) {
-    console.log('=== seekTo 函数被调用 ===');
-    console.log('event:', event);
-    console.log('this.audioPlayer:', this.audioPlayer);
-    console.log('this.progressBar:', this.progressBar);
-    
     if (!this.audioPlayer || !this.progressBar) {
       console.error('音频播放器或进度条元素未找到');
       return;
     }
-    
-    console.log('audioPlayer.duration:', this.audioPlayer.duration);
-    console.log('audioPlayer.readyState:', this.audioPlayer.readyState);
-    console.log('audioPlayer.currentTime:', this.audioPlayer.currentTime);
-    
-    // 检查音频是否已加载且有有效的duration
+
+    // 检查音频是否已加载且有有效的 duration
     if (!this.audioPlayer.duration || isNaN(this.audioPlayer.duration) || this.audioPlayer.duration <= 0) {
-      console.warn('音频尚未加载完成，无法跳转');
       return;
     }
-    
+
     // 检查音频是否处于可跳转状态
     if (this.audioPlayer.readyState < 2) {
-      console.warn('音频数据不足，无法跳转');
       return;
     }
-    
+
     const rect = this.progressBar.getBoundingClientRect();
-    console.log('progressBar rect:', rect);
-    console.log('event.clientX:', event.clientX);
-    
     const percent = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
     const seekTime = percent * this.audioPlayer.duration;
-    
-    console.log('计算的 percent:', percent);
-    console.log('计算的 seekTime:', seekTime);
-    
-    // 确保seekTime在有效范围内
+
+    // 确保 seekTime 在有效范围内
     if (seekTime >= 0 && seekTime <= this.audioPlayer.duration) {
-      console.log('设置 currentTime 为:', seekTime);
       this.audioPlayer.currentTime = seekTime;
-      console.log('设置后的 currentTime:', this.audioPlayer.currentTime);
     } else {
       console.error('seekTime 超出有效范围:', seekTime);
     }
@@ -592,17 +561,37 @@ class CustomMusicPlayer {
   }
 
   /**
-   * 滚动歌词到可视区域
+   * 滚动高亮歌词到容器中间位置
+   * @param {HTMLElement} lyricLine 当前高亮的歌词行元素
    */
   scrollLyricIntoView(lyricLine) {
-    if (!this.lyricsContent || !lyricLine) return;
-    
-    const containerRect = this.lyricsContent.getBoundingClientRect();
+    // 如果没有歌词容器或行元素，直接返回
+    if (!this.lyricsContainer || !lyricLine) return;
+
+    const container = this.lyricsContainer;
+
+    // 使用可视区域位置计算，避免 offsetParent 层级导致的偏差
+    const containerRect = container.getBoundingClientRect();
     const lineRect = lyricLine.getBoundingClientRect();
-    
-    if (lineRect.top < containerRect.top || lineRect.bottom > containerRect.bottom) {
-      lyricLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+
+    // 当前行相对容器可视区域的顶部偏移（会随 scrollTop 改变）
+    const currentTopWithinContainer = lineRect.top - containerRect.top;
+
+    // 目标是让当前行的中线位于容器中线
+    const desiredTop = (container.clientHeight - lyricLine.offsetHeight) / 2;
+
+    // 需要滚动的增量 = 当前可见顶部 - 目标顶部
+    let targetScrollTop = container.scrollTop + (currentTopWithinContainer - desiredTop);
+
+    // 边界处理
+    const maxScrollTop = container.scrollHeight - container.clientHeight;
+    if (targetScrollTop < 0) targetScrollTop = 0;
+    if (targetScrollTop > maxScrollTop) targetScrollTop = maxScrollTop;
+
+    // 使用 requestAnimationFrame 确保布局稳定后再滚动，提升稳定性
+    window.requestAnimationFrame(() => {
+      container.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+    });
   }
 
   /**
@@ -683,7 +672,6 @@ class CustomMusicPlayer {
    * 音频开始加载
    */
   onAudioLoadStart() {
-    console.log('音频开始加载');
     // 禁用进度条交互
     if (this.progressBar) {
       this.progressBar.style.pointerEvents = 'none';
@@ -695,7 +683,6 @@ class CustomMusicPlayer {
    * 音频元数据加载完成
    */
   onAudioMetadataLoaded() {
-    console.log('音频元数据加载完成');
     // 启用进度条交互
     if (this.progressBar) {
       this.progressBar.style.pointerEvents = 'auto';
@@ -707,7 +694,6 @@ class CustomMusicPlayer {
    * 音频可以播放
    */
   onAudioCanPlay() {
-    console.log('音频可以播放');
     // 确保进度条可以交互
     if (this.progressBar) {
       this.progressBar.style.pointerEvents = 'auto';
