@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qaqan.cn/%E8%AE%A1%E7%BD%91.html</loc>
+    
+    <lastmod>2025-10-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://qaqan.cn/2025/09/22/%E6%88%91%E6%9C%AC%E6%9D%A5%E5%B0%B1%E4%B8%8D%E4%BC%9A%E5%86%99%E4%BD%9C/</loc>
     
     <lastmod>2025-09-27</lastmod>
@@ -148,7 +157,7 @@
 
   <url>
     <loc>https://qaqan.cn/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -156,14 +165,14 @@
   
   <url>
     <loc>https://qaqan.cn/tags/%E6%91%87%E6%BB%9A%E4%B9%90/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://qaqan.cn/tags/%E7%8B%97/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -172,21 +181,21 @@
   
   <url>
     <loc>https://qaqan.cn/categories/live/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://qaqan.cn/categories/code/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://qaqan.cn/categories/post/</loc>
-    <lastmod>2025-09-27</lastmod>
+    <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
