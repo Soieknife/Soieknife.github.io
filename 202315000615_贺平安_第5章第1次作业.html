@@ -1,0 +1,256 @@
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/><link rel="preload" href="/css/style.css" as="style"/><link rel="preload" href="/css/helpers.css" as="style"/><title>Soieknife
+-
+
+近人可读</title><link rel="icon" href="/img/Sunflower.png"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/helpers.css">
+<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;500;700&display=swap');
+</style>
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/clipboard/clipboard.min.js"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Soieknife" type="application/atom+xml">
+</head><body><div class="loading-wrapper" data-loading="data-loading"><div class="loading"><span></span><span></span><span></span></div></div><div class="page" data-filter="data-filter"><div class="head" data-show="data-show"><header class="head-header"><div class="head-author"><a class="head-author-link" href="/">Soieknife</a></div><div class="head-right"><button class="bar-wrap" id="bar-wrap-toggle" title="菜单按钮"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button><div class="head-item"><a class="search-button head-item-link"><span>搜索</span>
+<i class="icon icon-search"></i></a></div><div class="head-item"><a class="head-item-link" href="/about">About</a><a class="head-item-link" href="/music">在听</a></div></div></header>
+<div class="menubar-head" id="menubar"><ul class="menubar-ul"><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/post/">Article</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/code/">Code</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/live/">Lives</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><i class="icon icon-archive"></i>
+<a class="menubar-link" href="/archives">Archives</a></li><li class="menubar-item"><i class="icon icon-tags"></i>
+<a class="menubar-link" href="/tags">Tags</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><a class="menubar-link" href="/about"><span>About</span></a></li><li class="menubar-item"><a class="menubar-link" href="/music"><span>在听</span></a></li></ul><div class="menu-search-box search-button"><div>搜索</div>
+<i class="icon icon-search"></i></div></div></div><div class="main"><article class="post" id="post"><header class="post-head"><h1 class="post-title"><a class="title" href="/202315000615_%E8%B4%BA%E5%B9%B3%E5%AE%89_%E7%AC%AC5%E7%AB%A0%E7%AC%AC1%E6%AC%A1%E4%BD%9C%E4%B8%9A.html"></a></h1></header><div class="post-meta"><div class="post-date"><time class="post-time" itemprop="datePublished" title="2025-12-07 22:55:52" datetime="2025-12-07T14:55:52.014Z">2025-12-07</time></div>|
+<div class="post-tag"></div></div><div class="post-info"><div class="post-word-count">本文共1,459字。</div></div><div class="article-entry" itemprop="articleBody"><hr>
+<h2 id="3-控制平面与数据平面分离的优缺点">3. 控制平面与数据平面分离的优缺点</h2>
+<h3 id="优点">优点</h3>
+<ol>
+<li>架构灵活，便于引入新路由协议和转发策略，无需改动大量数据平面设备</li>
+<li>集中控制降低硬件成本，数据平面可根据流量需求独立扩容，提升资源利用率</li>
+<li>全局视图简化网络管理，故障定位和流量调度更高效</li>
+<li>支持虚拟网络划分，满足业务隔离需求，提高资源复用率</li>
+</ol>
+<h3 id="缺点">缺点</h3>
+<ol>
+<li>控制平面集中化，故障可能导致全网瘫痪，对冗余设计要求高</li>
+<li>大规模网络中，控制平面需处理海量控制信息，易成性能瓶颈</li>
+<li>新旧设备与集中控制器可能存在兼容问题，升级过渡复杂</li>
+<li>集中控制平面易成为攻击目标，安全防护压力大</li>
+</ol>
+<h2 id="4-IP数据报首部检验和计算">4. IP数据报首部检验和计算</h2>
+<h3 id="已知条件">已知条件</h3>
+<p>固定首部长度20B，各字段（按IP首部顺序）：版本4、首部长度5（20B=5×4B）、服务类型0、总长度40、标识128、标志0、片偏移0、TTL10、协议6、源IP222.22.65.10、目的IP139.9.5.11</p>
+<h3 id="计算步骤">计算步骤</h3>
+<ol>
+<li>按16位分组转换为十六进制：0x4500、0x0028、0x0080、0x0000、0x0A06、0xDE16、0x410A、0x8B09、0x050B</li>
+<li>16位无符号求和（溢出进位循环相加）：0x4500+0x0028=0x4528；+0x0080=0x45A8；+0x0000=0x45A8；+0x0A06=0x4FB4；+0xDE16=0x12DCA（进位1）；+1=0x2DCB；+0x410A=0x6EC5；+0x8B09=0xF9CE；+0x050B=0xFED9（进位1）；+1=0xEDA</li>
+<li>取反得到检验和</li>
+</ol>
+<h3 id="结果">结果</h3>
+<p>十六进制：0xEDA，二进制：111011011010</p>
+<h2 id="9-IP数据报分片计算">9. IP数据报分片计算</h2>
+<h3 id="已知条件-2">已知条件</h3>
+<p>总长度5000B（含20B固定首部），DF=0（允许分片），MTU=1500B</p>
+<h3 id="计算过程">计算过程</h3>
+<ol>
+<li>原数据字段长度：5000-20=4980B</li>
+<li>最大分片数据长度：1500-20=1480B（8的倍数，满足片偏移要求）</li>
+<li>总分片数：⌈4980/1480⌉=4（1480×3=4440B，剩余540B）</li>
+</ol>
+<h3 id="分片详情">分片详情</h3>
+<table>
+<thead>
+<tr>
+<th>分片序号</th>
+<th>数据字段长度（B）</th>
+<th>片偏移（十进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1480</td>
+<td>0（0/8）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1480</td>
+<td>185（1480/8）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1480</td>
+<td>370（2960/8）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>540</td>
+<td>555（4440/8）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="重组位置">重组位置</h3>
+<p>目的主机（路由器不重组分片）</p>
+<h2 id="10-IP数据报字段解析（十六进制首部：45-00-00-54-00-03-00-00-20-06-00-00-7C-4E-03-02-B4-0E-0F-02）">10. IP数据报字段解析（十六进制首部：45 00 00 54 00 03 00 00 20 06 00 00 7C 4E 03 02 B4 0E 0F 02）</h2>
+<ol>
+<li>有无选项？无（首部长度=0x45低4位=5，5×4B=20B，无扩展首部）</li>
+<li>标识：3（4-5字节为00 03，十进制转换结果）</li>
+<li>最多经过路由器数：32（TTL字段=0x20，十进制=32，每经1个路由器TTL减1）</li>
+<li>源IP地址：124.78.3.2（12-15字节7C 4E 03 02，分别转换为十进制124、78、3、2）</li>
+</ol>
+<h2 id="11-分片后IP首部变化字段">11. 分片后IP首部变化字段</h2>
+<ol>
+<li>总长度：分片总长度=分片首部长度+分片数据长度，小于原总长度</li>
+<li>标志位：除最后一个分片外，MF标志设为1，DF标志失效</li>
+<li>片偏移：非最后一个分片的片偏移=前序分片数据总长度/8（单位：8B），不为0</li>
+<li>首部检验和：因总长度、标志、片偏移变化，需重新计算</li>
+</ol>
+<h2 id="13-路由表最长前缀匹配（下一跳计算）">13. 路由表最长前缀匹配（下一跳计算）</h2>
+<h3 id="路由表">路由表</h3>
+<table>
+<thead>
+<tr>
+<th>目的地址</th>
+<th>掩码</th>
+<th>下一跳</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>202.96.170.0</td>
+<td>255.255.254.0</td>
+<td>接口0</td>
+</tr>
+<tr>
+<td>202.96.168.0</td>
+<td>255.255.254.0</td>
+<td>接口1</td>
+</tr>
+<tr>
+<td>202.96.166.0</td>
+<td>255.255.254.0</td>
+<td>R2</td>
+</tr>
+<tr>
+<td>202.96.164.0</td>
+<td>255.255.252.0</td>
+<td>R3</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>0.0.0.0</td>
+<td>R4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算过程与结果">计算过程与结果</h3>
+<ol>
+<li>202.96.171.91：与255.255.254.0按位与得202.96.170.0，匹配接口0 → 下一跳：接口0</li>
+<li>202.96.167.151：与255.255.254.0按位与得202.96.166.0，匹配R2 → 下一跳：R2</li>
+<li>202.96.169.192：与255.255.254.0按位与得202.96.168.0，匹配接口1 → 下一跳：接口1</li>
+<li>202.96.163.52：与255.255.252.0按位与得202.96.160.0，无匹配项，走默认路由 → 下一跳：R4</li>
+<li>202.96.165.121：与255.255.252.0按位与得202.96.164.0，匹配R3 → 下一跳：R3</li>
+</ol>
+<h2 id="14-子网划分与分片计算">14. 子网划分与分片计算</h2>
+<h3 id="已知条件-3">已知条件</h3>
+<p>父网192.168.1.0/24，均分给两子网（各/25，128个地址）；销售部已分配192.168.1.1-20，技术部已分配192.168.1.129-208；销售部MTU=1500B，技术部MTU=800B</p>
+<h3 id="（1）子网信息">（1）子网信息</h3>
+<ul>
+<li>销售部广播地址：192.168.1.127（子网192.168.1.0/25，主机位全1）</li>
+<li>技术部子网地址：192.168.1.128/25（前25位为网络位）</li>
+<li>技术部剩余可连接主机数：128（总地址）-2（网络+广播地址）-80（已分配地址数）=46台</li>
+</ul>
+<h3 id="（2）分片计算">（2）分片计算</h3>
+<ol>
+<li>原IP分组：总长度1500B，首部20B → 数据字段长度=1500-20=1480B</li>
+<li>技术部MTU=800B → 最大分片总长度=800B，最大数据字段长度=800-20=780B（需为8的倍数，修正为776B）</li>
+<li>总分片数：⌈1480/776⌉=2（776+704=1480B）</li>
+</ol>
+<h3 id="分片详情-2">分片详情</h3>
+<table>
+<thead>
+<tr>
+<th>分片序号</th>
+<th>封装数据字节数（B）</th>
+<th>片偏移（十进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>776</td>
+<td>0（0/8）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>704</td>
+<td>97（776/8）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="核心结果">核心结果</h3>
+<ul>
+<li>最大封装数据字节数：776B</li>
+<li>最少分片数：2个</li>
+</ul>
+<h2 id="16-ICMP差错报告报文类型">16. ICMP差错报告报文类型</h2>
+<ol>
+<li>路由器无法获取目的主机MAC地址 → 目的不可达报文（类型3，代码1：主机不可达）</li>
+<li>无默认路由且目的IP不匹配路由表 → 目的不可达报文（类型3，代码0：网络不可达）</li>
+</ol>
+<h2 id="17-跟踪路由程序实现原理">17. 跟踪路由程序实现原理</h2>
+<ol>
+<li>源主机向目的主机发送UDP数据包（目的端口为未使用高端口），首包TTL=1，后续逐次加1</li>
+<li>数据包经路由器时TTL减1，减至0时路由器丢弃数据包，返回ICMP超时报文（类型11），源主机记录该路由器IP</li>
+<li>数据包到达目的主机后，因目的端口未使用，返回ICMP端口不可达报文（类型3，代码3），探测停止</li>
+<li>源主机汇总各跳响应时间和IP地址，生成路由路径，无响应跳标记为“*”</li>
+</ol>
+<h3 id="comments">留言评论</h3><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css"/><div id="waline-comments"></div><script type="module">import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+init({
+  el: '#waline-comments',
+  serverURL: 'https://waline.qaqan.cn',
+  path: window.location.pathname,
+  locale: {
+    placeholder: 'comment here...',
+    nick: 'your nick',
+    mail: 'your email',
+  },
+  meta: ['nick', 'mail'],
+  pageSize: 10,
+  lang: 'en',
+  pageview: false,
+  highlighter: true,
+  imageUploader: false,
+  search: false,
+  reaction: false,
+  login: false,
+  noCopyright: true,
+  requiredMeta: ['nick'],
+  dark: 'auto',
+});</script></div></article></div><footer class="footer-nav"><div class="footer"><div class="back-top" id="back-top" title="Back to top"><i class="icon icon-chevron-bar-up"></i></div><div class="footer-content">2023<span class="time-divide">-</span>2026</div></div></footer>
+<script>window.config = {
+  url_root: '/',
+  meta_path: 'meta.json',
+};
+</script>
+<script src="/js/theme/back-to-top.js"></script>
+
+
+<script src="/js/theme/clipboard.js"></script>
+
+
+<script src="/js/theme/loading.js"></script>
+
+
+<script src="/js/theme/navbar.js"></script>
+
+<script src="/js/theme/search.js"></script>
+
+<script src="/js/theme/toc.js"></script>
+<script>window.onload = function () {
+  for (const moduleName in Theme) {
+    const module = Theme[moduleName];
+    module.register();
+  }
+};</script></div><div class="search-modal" id="search-modal"><div class="card"><div class="card-head"><div class="search-box"><input class="search-input" id="search-input" placeholder="搜索"/><div class="search-button" id="search-button"><div class="icon icon-search"></div></div></div><div class="close-button"><div class="icon icon-x"></div></div></div><div class="card-body"><div class="search-count">共<span id="search-count-num">0</span>条搜索结果。</div><div class="search-result" id="search-result"></div></div></div></div></body></html>

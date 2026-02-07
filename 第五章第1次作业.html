@@ -1,0 +1,358 @@
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/><link rel="preload" href="/css/style.css" as="style"/><link rel="preload" href="/css/helpers.css" as="style"/><title>Soieknife
+-
+
+近人可读</title><link rel="icon" href="/img/Sunflower.png"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/helpers.css">
+<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;500;700&display=swap');
+</style>
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/clipboard/clipboard.min.js"></script>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Soieknife" type="application/atom+xml">
+</head><body><div class="loading-wrapper" data-loading="data-loading"><div class="loading"><span></span><span></span><span></span></div></div><div class="page" data-filter="data-filter"><div class="head" data-show="data-show"><header class="head-header"><div class="head-author"><a class="head-author-link" href="/">Soieknife</a></div><div class="head-right"><button class="bar-wrap" id="bar-wrap-toggle" title="菜单按钮"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button><div class="head-item"><a class="search-button head-item-link"><span>搜索</span>
+<i class="icon icon-search"></i></a></div><div class="head-item"><a class="head-item-link" href="/about">About</a><a class="head-item-link" href="/music">在听</a></div></div></header>
+<div class="menubar-head" id="menubar"><ul class="menubar-ul"><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/post/">Article</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/code/">Code</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/live/">Lives</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><i class="icon icon-archive"></i>
+<a class="menubar-link" href="/archives">Archives</a></li><li class="menubar-item"><i class="icon icon-tags"></i>
+<a class="menubar-link" href="/tags">Tags</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><a class="menubar-link" href="/about"><span>About</span></a></li><li class="menubar-item"><a class="menubar-link" href="/music"><span>在听</span></a></li></ul><div class="menu-search-box search-button"><div>搜索</div>
+<i class="icon icon-search"></i></div></div></div><div class="main"><article class="post" id="post"><header class="post-head"><h1 class="post-title"><a class="title" href="/%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%AC1%E6%AC%A1%E4%BD%9C%E4%B8%9A.html"></a></h1></header><div class="post-meta"><div class="post-date"><time class="post-time" itemprop="datePublished" title="2025-12-07 23:00:23" datetime="2025-12-07T15:00:23.458Z">2025-12-07</time></div>|
+<div class="post-tag"></div></div><div class="post-info"><div class="post-word-count">本文共2,255字。</div></div><div class="article-entry" itemprop="articleBody"><p>冯展    202315000612<br>
+![[bba304434e7384b08dddb21addbb456.png]]</p>
+<h2 id="3-控制平面与数据平面分离的优缺点">3. 控制平面与数据平面分离的优缺点</h2>
+<h3 id="优点">优点</h3>
+<ol>
+<li>网络架构更灵活：控制平面可集中管理，数据平面专注转发，便于引入新的路由协议和转发策略，无需改动大量数据平面设备。</li>
+<li>资源利用率提升：控制功能集中部署，避免每个转发设备都运行复杂控制协议，降低硬件成本；数据平面可根据流量需求独立扩容。</li>
+<li>简化网络管理：集中式控制平面能全局视图监控网络状态，快速配置、故障定位和流量调度，降低运维复杂度。</li>
+<li>支持网络虚拟化：可通过控制平面灵活划分多个虚拟网络，满足不同业务隔离需求，提升网络资源复用率。</li>
+</ol>
+<h3 id="缺点">缺点</h3>
+<ol>
+<li>可靠性风险：控制平面集中化，一旦故障可能导致整个网络瘫痪，对控制平面的冗余设计要求高。</li>
+<li>性能瓶颈：控制平面需处理全网控制信息，当网络规模过大或流量激增时，可能出现处理延迟，影响数据转发效率。</li>
+<li>兼容性问题：新旧设备的控制协议与集中控制器可能存在兼容问题，升级和过渡过程复杂。</li>
+<li>安全性挑战：集中式控制平面成为攻击目标，若被入侵可能导致全网配置泄露或被篡改，需加强安全防护。</li>
+</ol>
+<h2 id="4-IP数据报首部检验和计算">4. IP数据报首部检验和计算</h2>
+<h3 id="已知条件">已知条件</h3>
+<p>固定首部长度20B，各字段十进制数值（按IP首部格式顺序）：</p>
+<ul>
+<li>版本（4位）：4；首部长度（4位）：5（20B=5×4B）</li>
+<li>服务类型（8位）：0</li>
+<li>总长度（16位）：40</li>
+<li>标识（16位）：128</li>
+<li>标志（3位）：0；片偏移（13位）：0</li>
+<li>生存时间（8位）：10</li>
+<li>协议（8位）：6</li>
+<li>首部检验和（16位）：待求</li>
+<li>源IP地址（32位）：222.22.65.10</li>
+<li>目的IP地址（32位）：139.9.5.11</li>
+</ul>
+<h3 id="计算步骤">计算步骤</h3>
+<ol>
+<li>
+<p>将首部按16位分组，转换为十六进制：</p>
+<ul>
+<li>版本+首部长度：0x4500</li>
+<li>总长度：0x0028（40十进制转十六进制）</li>
+<li>标识：0x0080（128十进制转十六进制）</li>
+<li>标志+片偏移：0x0000</li>
+<li>生存时间+协议：0x0A06（10→0A，6→06）</li>
+<li>源IP地址：222.22.65.10 → 0xDE16410A</li>
+<li>目的IP地址：139.9.5.11 → 0x8B09050B</li>
+</ul>
+</li>
+<li>
+<p>分组求和（16位无符号加法，溢出进位循环相加）：<br>
+0x4500 + 0x0028 = 0x4528<br>
+0x4528 + 0x0080 = 0x45A8<br>
+0x45A8 + 0x0000 = 0x45A8<br>
+0x45A8 + 0x0A06 = 0x4FB4<br>
+0x4FB4 + 0xDE16 = 0x12DCA（进位1）<br>
+0x2DCA + 0x1 = 0x2DCB<br>
+0x2DCB + 0x410A = 0x6EC5<br>
+0x6EC5 + 0x8B09 = 0xF9CE<br>
+0xF9CE + 0x050B = 0xFED9（进位1）<br>
+0xED9 + 0x1 = 0xEDA</p>
+</li>
+<li>
+<p>取反得到检验和：0xEDA → 二进制：111011011010</p>
+</li>
+</ol>
+<h3 id="结果">结果</h3>
+<p>十六进制：0xEDA，二进制：111011011010</p>
+<h2 id="9-IP数据报分片计算">9. IP数据报分片计算</h2>
+<h3 id="已知条件-2">已知条件</h3>
+<ul>
+<li>原IP数据报总长度：5000B（含20B固定首部）</li>
+<li>DF=0（允许分片）</li>
+<li>途经网络MTU=1500B</li>
+</ul>
+<h3 id="关键公式">关键公式</h3>
+<ul>
+<li>分片数据字段长度≤MTU-IP首部长度（20B）</li>
+<li>片偏移=前序分片数据总长度/8（单位：8B）</li>
+<li>总分片数=⌈（原数据字段长度）/（最大分片数据长度）⌉</li>
+</ul>
+<h3 id="计算过程">计算过程</h3>
+<ol>
+<li>原数据字段长度：5000-20=4980B</li>
+<li>最大分片数据长度：1500-20=1480B（1480是8的倍数，满足片偏移要求）</li>
+<li>总分片数：⌈4980/1480⌉=4（1480×3=4440，剩余4980-4440=540B）</li>
+<li>各分片详情：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>分片序号</th>
+<th>数据字段长度（B）</th>
+<th>片偏移（十进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1480</td>
+<td>0（0/8）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1480</td>
+<td>185（1480/8）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1480</td>
+<td>370（2960/8）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>540</td>
+<td>555（4440/8）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="重组位置">重组位置</h3>
+<p>分片在目的主机进行重组，路由器不重组分片。</p>
+<h2 id="10-IP数据报字段解析（十六进制首部：45-00-00-54-00-03-00-00-20-06-00-00-7C-4E-03-02-B4-0E-0F-02）">10. IP数据报字段解析（十六进制首部：45 00 00 54 00 03 00 00 20 06 00 00 7C 4E 03 02 B4 0E 0F 02）</h2>
+<h3 id="解析依据">解析依据</h3>
+<p>IP首部固定格式（前20B）：</p>
+<ul>
+<li>0-1字节：版本+首部长度、服务类型</li>
+<li>2-3字节：总长度</li>
+<li>4-5字节：标识</li>
+<li>6-7字节：标志+片偏移</li>
+<li>8字节：生存时间</li>
+<li>9字节：协议</li>
+<li>10-11字节：首部检验和</li>
+<li>12-15字节：源IP地址</li>
+<li>16-19字节：目的IP地址</li>
+</ul>
+<h3 id="问题答案">问题答案</h3>
+<ol>
+<li>有无选项？<br>
+首部长度=0x45的低4位=5（5×4B=20B），无扩展首部，故无选项。</li>
+<li>标识是多少？<br>
+4-5字节：00 03 → 十进制3。</li>
+<li>最多经过多少个路由器？<br>
+生存时间（TTL）=0x20 → 十进制32，故最多经过32个路由器（每经过1个TTL减1，至0丢弃）。</li>
+<li>源IP地址（点分十进制）？<br>
+12-15字节：7C 4E 03 02 → 124.78.3.2。</li>
+</ol>
+<h2 id="11-分片后IP首部变化字段">11. 分片后IP首部变化字段</h2>
+<p>分片后，以下字段值会发生变化：</p>
+<ol>
+<li>总长度：每个分片的总长度=分片首部长度+分片数据长度，小于原总长度。</li>
+<li>标志位：除最后一个分片外，MF标志（更多分片）设为1；原标志位中的DF标志失效。</li>
+<li>片偏移：每个分片的片偏移=前序所有分片数据总长度/8（单位：8B），非最后一个分片的片偏移不为0。</li>
+<li>首部检验和：因总长度、标志、片偏移变化，首部检验和需重新计算。</li>
+</ol>
+<h2 id="13-路由表最长前缀匹配（下一跳计算）">13. 路由表最长前缀匹配（下一跳计算）</h2>
+<h3 id="路由表规则">路由表规则</h3>
+<table>
+<thead>
+<tr>
+<th>目的地址</th>
+<th>掩码</th>
+<th>下一跳</th>
+<th>前缀长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>202.96.170.0</td>
+<td>255.255.254.0</td>
+<td>接口0</td>
+<td>23</td>
+</tr>
+<tr>
+<td>202.96.168.0</td>
+<td>255.255.254.0</td>
+<td>接口1</td>
+<td>23</td>
+</tr>
+<tr>
+<td>202.96.166.0</td>
+<td>255.255.254.0</td>
+<td>R2</td>
+<td>23</td>
+</tr>
+<tr>
+<td>202.96.164.0</td>
+<td>255.255.252.0</td>
+<td>R3</td>
+<td>22</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>0.0.0.0</td>
+<td>R4</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="计算过程（将目的IP与掩码按位与，匹配最长前缀）">计算过程（将目的IP与掩码按位与，匹配最长前缀）</h3>
+<ol>
+<li>202.96.171.91<br>
+与255.255.254.0（/23）按位与：202.96.170.0 → 匹配接口0，下一跳：接口0</li>
+<li>202.96.167.151<br>
+与255.255.254.0（/23）按位与：202.96.166.0 → 匹配R2，下一跳：R2</li>
+<li>202.96.169.192<br>
+与255.255.254.0（/23）按位与：202.96.168.0 → 匹配接口1，下一跳：接口1</li>
+<li>202.96.163.52<br>
+与255.255.252.0（/22）按位与：202.96.160.0（不匹配前3条），默认路由匹配R4，下一跳：R4</li>
+<li>202.96.165.121<br>
+与255.255.252.0（/22）按位与：202.96.164.0 → 匹配R3，下一跳：R3</li>
+</ol>
+<h2 id="14-子网划分与分片计算">14. 子网划分与分片计算</h2>
+<h3 id="已知条件-3">已知条件</h3>
+<ul>
+<li>父网：192.168.1.0/24，均分给销售部和技术部（各占128个地址，子网掩码/25）</li>
+<li>销售部已分配：192.168.1.1-192.168.1.20</li>
+<li>技术部已分配：192.168.1.129-192.168.1.208</li>
+<li>销售部MTU=1500B，技术部MTU=800B</li>
+</ul>
+<h3 id="问题答案-2">问题答案</h3>
+<h4 id="（1）子网信息">（1）子网信息</h4>
+<ol>
+<li>销售部子网：
+<ul>
+<li>子网地址：192.168.1.0/25（前25位网络位）</li>
+<li>广播地址：192.168.1.127（主机位全1）</li>
+</ul>
+</li>
+<li>技术部子网：
+<ul>
+<li>子网地址：192.168.1.128/25（网络位192.168.1.10000000）</li>
+<li>可连接主机数：128（总地址数）-2（网络地址+广播地址）-80（已分配129-208共80个）=46台</li>
+</ul>
+</li>
+</ol>
+<h4 id="（2）分片计算">（2）分片计算</h4>
+<ul>
+<li>原IP分组：总长度1500B，首部20B → 数据字段长度=1500-20=1480B</li>
+<li>转发接口F1（技术部子网）MTU=800B → 分片最大总长度=800B</li>
+</ul>
+<ol>
+<li>最大分片数据字段长度：800-20=780B（780是8的倍数，满足片偏移要求）</li>
+<li>总分片数：⌈1480/780⌉=2（780+700=1480）</li>
+<li>修正说明：780需为8的倍数，实际最大数据长度=776B（776=8×97），最终分片详情：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>分片序号</th>
+<th>封装数据字节数（B）</th>
+<th>片偏移（十进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>776</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>704</td>
+<td>97</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>核心结果：
+<ul>
+<li>最大IP分片封装数据字节数：776B</li>
+<li>至少需要分片数：2个</li>
+<li>片偏移量：第1片0，第2片97</li>
+</ul>
+</li>
+</ol>
+<h2 id="16-ICMP差错报告报文类型">16. ICMP差错报告报文类型</h2>
+<ol>
+<li>路由器无法通过ARP获取目的主机MAC地址（无法交付）→ ICMP目的不可达报文（类型3，代码1：主机不可达）</li>
+<li>无默认路由且目的IP不匹配路由表 → ICMP目的不可达报文（类型3，代码0：网络不可达）</li>
+</ol>
+<h2 id="17-跟踪路由程序（traceroute）实现原理">17. 跟踪路由程序（traceroute）实现原理</h2>
+<p>traceroute的核心是利用IP首部的生存时间（TTL）和ICMP差错报文，逐步探测数据包从源主机到目的主机的路径：</p>
+<ol>
+<li>源主机向目的主机发送一系列UDP数据包（目的端口号为未使用的高端口），第一个数据包的TTL设为1。</li>
+<li>数据包到达第一个路由器，TTL减1变为0，路由器丢弃数据包并返回ICMP超时报文（类型11），报文中包含路由器的IP地址，源主机记录该路由器为路径第一跳。</li>
+<li>源主机发送下一组UDP数据包，TTL设为2，经过第一个路由器后TTL减为1，到达第二个路由器后TTL减为0，第二个路由器返回ICMP超时报文，源主机记录第二跳。</li>
+<li>重复上述过程，每次将TTL加1，直到数据包到达目的主机。目的主机收到UDP数据包后，因目的端口未使用，返回ICMP端口不可达报文（类型3，代码3），源主机确认到达目的主机，停止探测。</li>
+<li>源主机通过记录每一跳的ICMP响应时间和IP地址，生成完整的路由路径。若某一跳无响应，超时后标记为“*”。</li>
+</ol>
+<h3 id="comments">留言评论</h3><link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css"/><div id="waline-comments"></div><script type="module">import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+init({
+  el: '#waline-comments',
+  serverURL: 'https://waline.qaqan.cn',
+  path: window.location.pathname,
+  locale: {
+    placeholder: 'comment here...',
+    nick: 'your nick',
+    mail: 'your email',
+  },
+  meta: ['nick', 'mail'],
+  pageSize: 10,
+  lang: 'en',
+  pageview: false,
+  highlighter: true,
+  imageUploader: false,
+  search: false,
+  reaction: false,
+  login: false,
+  noCopyright: true,
+  requiredMeta: ['nick'],
+  dark: 'auto',
+});</script></div></article></div><footer class="footer-nav"><div class="footer"><div class="back-top" id="back-top" title="Back to top"><i class="icon icon-chevron-bar-up"></i></div><div class="footer-content">2023<span class="time-divide">-</span>2026</div></div></footer>
+<script>window.config = {
+  url_root: '/',
+  meta_path: 'meta.json',
+};
+</script>
+<script src="/js/theme/back-to-top.js"></script>
+
+
+<script src="/js/theme/clipboard.js"></script>
+
+
+<script src="/js/theme/loading.js"></script>
+
+
+<script src="/js/theme/navbar.js"></script>
+
+<script src="/js/theme/search.js"></script>
+
+<script src="/js/theme/toc.js"></script>
+<script>window.onload = function () {
+  for (const moduleName in Theme) {
+    const module = Theme[moduleName];
+    module.register();
+  }
+};</script></div><div class="search-modal" id="search-modal"><div class="card"><div class="card-head"><div class="search-box"><input class="search-input" id="search-input" placeholder="搜索"/><div class="search-button" id="search-button"><div class="icon icon-search"></div></div></div><div class="close-button"><div class="icon icon-x"></div></div></div><div class="card-body"><div class="search-count">共<span id="search-count-num">0</span>条搜索结果。</div><div class="search-result" id="search-result"></div></div></div></div></body></html>
